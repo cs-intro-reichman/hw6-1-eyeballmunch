@@ -11,6 +11,8 @@ public class Runigram {
 		Color[][] tinypic = read("tinypic.ppm");
 		print(tinypic);
 
+		System.out.println("im here!!!");
+
 		// Creates an image which will be the result of various 
 		// image processing operations:
 		Color[][] image;
@@ -40,7 +42,18 @@ public class Runigram {
 		// creates from the 3 colors a new Color object, and 
 		// makes pixel (i,j) refer to that object.
 		//// Replace the following statement with your code.
-		return null;
+		 
+		for(int i =0; i <numRows; i++){
+			for(int j =  0; j < numCols; j++){
+
+				int r = in.readInt();
+            	int g = in.readInt();
+            	int b = in.readInt();
+            	image[i][j] = new Color(r, g, b);
+			}
+		}
+
+		return image;
 	}
 
     // Prints the RGB values of a given color.
@@ -60,6 +73,16 @@ public class Runigram {
 	private static void print(Color[][] image) {
 		//// Replace this comment with your code
 		//// Notice that all you have to so is print every element (i,j) of the array using the print(Color) function.
+		int numRows = image.length;
+		int numCols = image[0].length;
+		
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < numCols; j++) {
+				print(image[i][j]);   //sending it to the other print function 
+				System.out.print(" ");  
+			}
+			System.out.println();
+		}
 	}
 	
 	/**
@@ -67,7 +90,17 @@ public class Runigram {
 	 */
 	public static Color[][] flippedHorizontally(Color[][] image) {
 		//// Replace the following statement with your code
-		return null;
+		int numRows = image.length;
+		int numCols = image[0].length;
+		Color[][] flipped = new Color[numRows][numCols];
+		
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < numCols; j++) {
+				flipped[i][j] = image[i][numCols - 1 - j];
+			}
+		}
+    
+    	return flipped;
 	}
 	
 	/**
@@ -75,7 +108,17 @@ public class Runigram {
 	 */
 	public static Color[][] flippedVertically(Color[][] image){
 		//// Replace the following statement with your code
-		return null;
+		int numRows = image.length;
+		int numCols = image[0].length;
+		Color[][] flipped = new Color[numRows][numCols];
+		
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < numCols; j++) {
+				flipped[i][j] = image[numRows - 1 - i][j];
+			}
+		}
+		
+		return flipped;
 	}
 	
 	// Computes the luminance of the RGB values of the given pixel, using the formula 

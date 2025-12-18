@@ -154,7 +154,6 @@ public class Runigram {
 				result[i][j] = luminance(image[i][j]); 
 				
 			}
-			System.out.println();
 		}
 
 		return result;

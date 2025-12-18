@@ -166,7 +166,22 @@ public class Runigram {
 	 */
 	public static Color[][] scaled(Color[][] image, int width, int height) {
 		//// Replace the following statement with your code
-		return null;
+		int h0 = image.length;
+		int w0 = image[0].length;
+
+		Color[][] scaledImage = new Color[height][width];
+
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				
+				int sourceRow = (int) (i * ((double) h0 / height));
+				int sourceCol = (int) (j * ((double) w0 / width));
+
+				scaledImage[i][j] = image[sourceRow][sourceCol];
+			}
+		}
+
+    	return scaledImage;
 	}
 	
 	/**
@@ -177,7 +192,11 @@ public class Runigram {
 	 */
 	public static Color blend(Color c1, Color c2, double alpha) {
 		//// Replace the following statement with your code
-		return null;
+		int r = (int) (alpha * c1.getRed() + (1 - alpha) * c2.getRed());
+		int g = (int) (alpha * c1.getGreen() + (1 - alpha) * c2.getGreen());
+		int b = (int) (alpha * c1.getBlue() + (1 - alpha) * c2.getBlue());
+
+		return new Color(r, g, b);
 	}
 	
 	/**
@@ -188,7 +207,19 @@ public class Runigram {
 	 */
 	public static Color[][] blend(Color[][] image1, Color[][] image2, double alpha) {
 		//// Replace the following statement with your code
-		return null;
+		int numRows = image1.length;
+		int numCols = image1[0].length;
+
+		Color[][] blendedImage = new Color[numRows][numCols];
+
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < numCols; j++) {
+				
+				blendedImage[i][j] = blend(image1[i][j], image2[i][j], alpha);
+			}
+		}
+
+		return blendedImage;
 	}
 
 	/**
@@ -199,6 +230,21 @@ public class Runigram {
 	 */
 	public static void morph(Color[][] source, Color[][] target, int n) {
 		//// Replace this comment with your code
+
+		if (source.length != target.length || source[0].length != target[0].length) {
+			target = scaled(target, source[0].length, source.length);
+		}
+
+		for (int i = 0; i <= n; i++) {
+			
+			double alpha = (double) (n - i) / n;
+
+			Color[][] currentStepImage = blend(source, target, alpha);
+
+			Runigram.display(currentStepImage);
+
+			StdDraw.pause(500);
+		}
 	}
 	
 	/** Creates a canvas for the given image. */

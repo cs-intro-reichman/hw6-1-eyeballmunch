@@ -78,7 +78,7 @@ public class Runigram {
 		
 		for (int i = 0; i < numRows; i++) {
 			for (int j = 0; j < numCols; j++) {
-				print(image[i][j]);   //sending it to the other print function 
+				print(image[i][j]);   
 				System.out.print(" ");  
 			}
 			System.out.println();
@@ -126,7 +126,16 @@ public class Runigram {
 	// the three values r = lum, g = lum, b = lum.
 	private static Color luminance(Color pixel) {
 		//// Replace the following statement with your code
-		return null;
+		int r = pixel.getRed();
+		int g = pixel.getGreen();
+		int b = pixel.getBlue();
+
+		int newColor = (int) (0.299*r + 0.587*g + 0.114*b);
+
+		Color newPixel = new Color(newColor,newColor,newColor);
+
+
+		return newPixel;
 	}
 	
 	/**
@@ -134,6 +143,20 @@ public class Runigram {
 	 */
 	public static Color[][] grayScaled(Color[][] image) {
 		//// Replace the following statement with your code
+		/// 
+		int numRows = image.length;
+		int numCols = image[0].length;
+
+		Color[][] result = new Color[numRows][numCols];
+		
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < numCols; j++) {
+				result[i][j] = luminance(image[i][j]); 
+				
+			}
+			System.out.println();
+		}
+
 		return null;
 	}	
 	

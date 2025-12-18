@@ -157,7 +157,7 @@ public class Runigram {
 			System.out.println();
 		}
 
-		return null;
+		return result;
 	}	
 	
 	/**
